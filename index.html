@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elektroblondi | Jenna - Elektronikerin & Content Creator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FFD000;
+            --primary-dark: #E6BB00;
+            --bg-dark: #0D0D0D;
+            --bg-card: #1A1A1A;
+            --bg-card-hover: #252525;
+            --text-light: #FFFFFF;
+            --text-muted: #A0A0A0;
+            --accent-blue: #00D4FF;
+            --gradient-electric: linear-gradient(135deg, #FFD000 0%, #FF6B00 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Grain Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(13, 13, 13, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 208, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 4px;
+            background: var(--gradient-electric);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-light);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 8rem 4rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(ellipse, rgba(255, 208, 0, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            z-index: 1;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 208, 0, 0.1);
+            border: 1px solid rgba(255, 208, 0, 0.3);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(4rem, 10vw, 8rem);
+            line-height: 0.95;
+            letter-spacing: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            background: var(--gradient-electric);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient-electric);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 208, 0, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: slideInRight 1s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            max-width: 500px;
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            transform: translate(20px, 20px);
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        /* Stats Section */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 6rem;
+            padding: 4rem;
+            background: var(--bg-card);
+            border-top: 1px solid rgba(255, 208, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 208, 0, 0.1);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            background: var(--gradient-electric);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0.5rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 4rem;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-tag {
+            font-size: 0.85rem;
+            color: var(--primary);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            letter-spacing: 3px;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            line-height: 2;
+            text-align: center;
+        }
+
+        .about-content strong {
+            color: var(--text-light);
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Gallery */
+        .gallery {
+            padding: 4rem;
+            overflow: hidden;
+        }
+
+        .gallery-track {
+            display: flex;
+            gap: 2rem;
+            animation: scroll 30s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .gallery-item {
+            flex-shrink: 0;
+            width: 350px;
+            height: 450px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Jobs CTA */
+        .jobs-cta {
+            padding: 8rem 4rem;
+            background: linear-gradient(135deg, rgba(255, 208, 0, 0.1) 0%, rgba(255, 107, 0, 0.05) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .jobs-cta::before {
+            content: '⚡';
+            position: absolute;
+            font-size: 30rem;
+            opacity: 0.03;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .jobs-cta h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+        }
+
+        .jobs-cta p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Tools Section */
+        .tools {
+            padding: 8rem 4rem;
+        }
+
+        .tools-marquee {
+            overflow: hidden;
+            margin-bottom: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255, 208, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 208, 0, 0.1);
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: marquee 20s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .marquee-item {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            letter-spacing: 8px;
+            white-space: nowrap;
+            padding: 0 3rem;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 208, 0, 0.3);
+        }
+
+        .marquee-item:nth-child(odd) {
+            color: var(--text-light);
+            -webkit-text-stroke: none;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-electric);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .tool-card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(255, 208, 0, 0.2);
+            transform: translateY(-8px);
+        }
+
+        .tool-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .tool-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            background: #fff;
+            padding: 1rem;
+        }
+
+        .tool-brand {
+            font-size: 0.8rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: gap 0.3s ease;
+        }
+
+        .tool-link:hover {
+            gap: 1rem;
+        }
+
+        .tool-link svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            padding: 8rem 4rem;
+            background: var(--bg-card);
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            min-width: 250px;
+            padding: 1rem 1.5rem;
+            background: var(--bg-dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .newsletter-form input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem;
+            border-top: 1px solid rgba(255, 208, 0, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            background: var(--gradient-electric);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-card);
+            border-radius: 50%;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 4rem;
+            }
+
+            .hero-content {
+                order: 2;
+            }
+
+            .hero-image {
+                order: 1;
+            }
+
+            .hero-text {
+                margin: 0 auto 2.5rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .stats {
+                flex-wrap: wrap;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 2rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--bg-dark);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateX(0);
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero, .about, .jobs-cta, .tools, .newsletter {
+                padding: 4rem 2rem;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">ELEKTROBLONDI</a>
+        <ul class="nav-links">
+            <li><a href="#about">Über Mich</a></li>
+            <li><a href="#gallery">Galerie</a></li>
+            <li><a href="#tools">Werkzeug</a></li>
+            <li><a href="#jobs">Karriere</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+        </ul>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">⚡ Elektronikerin & Influencerin</span>
+            <h1>HEY, ICH BIN<br><span>JENNA</span></h1>
+            <p class="hero-text">25 Jahre alt, Elektronikerin für Betriebstechnik und leidenschaftliche Content Creatorin. Ich zeige dir die spannende Welt des Handwerks!</p>
+            <div class="hero-buttons">
+                <a href="#about" class="btn btn-primary">Mehr über mich</a>
+                <a href="#tools" class="btn btn-outline">Mein Werkzeug</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.squarespace-cdn.com/content/v1/663b6072f99df73a91f85bfd/ccea86ec-6f4d-4c4d-9e0c-c0b9ba49f6c2/IMG_3457+%281%29.jpg" alt="Jenna - Elektroblondi">
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stat">
+            <div class="stat-number">2023</div>
+            <div class="stat-label">Ausbildung abgeschlossen</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">25</div>
+            <div class="stat-label">Jahre jung</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Leidenschaft</div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="section-header">
+            <p class="section-tag">Meine Geschichte</p>
+            <h2 class="section-title">ÜBER MICH</h2>
+        </div>
+        <div class="about-content fade-in">
+            <p>
+                Mein Name ist <strong>Jenna</strong>, ich bin <span class="highlight">25 Jahre alt</span> und habe meine Ausbildung als <strong>Elektronikerin für Betriebstechnik</strong> im Juli 2023 bei der Firma Heldele abgeschlossen.
+            </p>
+            <br>
+            <p>
+                Mit Social Media möchte ich jungen Menschen die <span class="highlight">Vielfalt im Elektrobereich</span> und im Handwerk zeigen. Ich hoffe, dass mehr junge Menschen und ganz besonders <strong>Mädchen und Frauen</strong> durch den Einblick in meinen Alltag, ihre Lust und Leidenschaft für das Handwerk entdecken.
+            </p>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery" id="gallery">
+        <div class="gallery-track">
+            <div class="gallery-item">
+                <img src="https://images.squarespace-cdn.com/content/v1/663b6072f99df73a91f85bfd/ccea86ec-6f4d-4c4d-9e0c-c0b9ba49f6c2/IMG_3457+%281%29.jpg" alt="Jenna bei der Arbeit">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.squarespace-cdn.com/content/v1/663b6072f99df73a91f85bfd/e169dcae-4c8f-4db8-8db6-917cda7c307a/930030602_Tool_Backpack_electric_01.jpg" alt="Werkzeug">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.squarespace-cdn.com/content/v1/663b6072f99df73a91f85bfd/6465244c-a7ab-4020-a885-078b06b5a4c5/4011391301504_90052390_566x430.png" alt="JOKARI Werkzeug">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.squarespace-cdn.com/content/v1/663b6072f99df73a91f85bfd/4ed1624d-540c-412d-aafb-a8ed71aca129/o411359v54_GWS_12V-76_sos_F4_06019F2000_v2.png" alt="Bosch Werkzeug">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.squarespace-cdn.com/content/v1/663b6072f99df73a91f85bfd/acdb76b7-936b-4cd0-a22c-59749d1d4e02/4010995458096_90043039_566x430-_1_.jpg" alt="Wiha Werkzeug">
+            </div>
+            <!-- Duplicate for infinite scroll -->
+            <div class="gallery-item">
+                <img src="https://images.squarespace-cdn.com/content/v1/663b6072f99df73a91f85bfd/ccea86ec-6f4d-4c4d-9e0c-c0b9ba49f6c2/IMG_3457+%281%29.jpg" alt="Jenna bei der Arbeit">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.squarespace-cdn.com/content/v1/663b6072f99df73a91f85bfd/e169dcae-4c8f-4db8-8db6-917cda7c307a/930030602_Tool_Backpack_electric_01.jpg" alt="Werkzeug">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.squarespace-cdn.com/content/v1/663b6072f99df73a91f85bfd/6465244c-a7ab-4020-a885-078b06b5a4c5/4011391301504_90052390_566x430.png" alt="JOKARI Werkzeug">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.squarespace-cdn.com/content/v1/663b6072f99df73a91f85bfd/4ed1624d-540c-412d-aafb-a8ed71aca129/o411359v54_GWS_12V-76_sos_F4_06019F2000_v2.png" alt="Bosch Werkzeug">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.squarespace-cdn.com/content/v1/663b6072f99df73a91f85bfd/acdb76b7-936b-4cd0-a22c-59749d1d4e02/4010995458096_90043039_566x430-_1_.jpg" alt="Wiha Werkzeug">
+            </div>
+        </div>
+    </section>
+
+    <!-- Jobs CTA -->
+    <section class="jobs-cta" id="jobs">
+        <h2>DU SUCHST EINEN JOB ODER<br>MÖCHTEST EINE AUSBILDUNG MACHEN?</h2>
+        <p>Heldele ist immer auf der Suche nach motivierten Arbeitskräften und Azubis. Starte jetzt deine Karriere im Handwerk!</p>
+        <a href="https://karriere.heldele.de/?utm_source=Instagram&utm_medium=Elektroblondi&utm_campaign=05-2024" class="btn btn-primary" target="_blank">Zum Jobportal →</a>
+    </section>
+
+    <!-- Tools Section -->
+    <section class="tools" id="tools">
+        <div class="tools-marquee">
+            <div class="marquee-content">
+                <span class="marquee-item">MEIN WERKZEUG</span>
+                <span class="marquee-item">MEIN WERKZEUG</span>
+                <span class="marquee-item">MEIN WERKZEUG</span>
+                <span class="marquee-item">MEIN WERKZEUG</span>
+                <span class="marquee-item">MEIN WERKZEUG</span>
+                <span class="marquee-item">MEIN WERKZEUG</span>
+            </div>
+        </div>
+
+        <div class="tools-grid">
+            <div class="tool-card fade-in">
+                <img src="https://images.squarespace-cdn.com/content/v1/663b6072f99df73a91f85bfd/e169dcae-4c8f-4db8-8db6-917cda7c307a/930030602_Tool_Backpack_electric_01.jpg" alt="Wiha Werkzeugrucksack" class="tool-image">
+                <span class="tool-brand">Wiha</span>
+                <h3 class="tool-name">Werkzeugrucksack Electric</h3>
+                <p class="tool-desc">27-teilig. Einer. Immer. Überall. Der Wiha Werkzeugrucksack für den professionellen Einsatz.</p>
+                <a href="https://www.wiha.com/de/de/werkzeuge/werkzeug-sets/werkzeugrucksaecke/1855/werkzeugrucksack-electric?c=9776" class="tool-link" target="_blank">
+                    Zum Produkt 
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="tool-card fade-in">
+                <img src="https://images.squarespace-cdn.com/content/v1/663b6072f99df73a91f85bfd/6465244c-a7ab-4020-a885-078b06b5a4c5/4011391301504_90052390_566x430.png" alt="JOKARI Super-Entmantler" class="tool-image">
+                <span class="tool-brand">JOKARI</span>
+                <h3 class="tool-name">Super-Entmantler Gelb</h3>
+                <p class="tool-desc">Für schnelles und präzises Abmanteln von Kabel 8-13 mm. Unverzichtbar im Elektrikeralltag.</p>
+                <a href="https://www.awin1.com/cread.php?awinmid=11830&awinaffid=1462218&ued=https%3A%2F%2Fwww.globus-baumarkt.de%2Fp%2Fjokari-super-entmantler-gelb-0775220091%2F" class="tool-link" target="_blank">
+                    Zum Produkt 
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="tool-card fade-in">
+                <img src="https://images.squarespace-cdn.com/content/v1/663b6072f99df73a91f85bfd/4ed1624d-540c-412d-aafb-a8ed71aca129/o411359v54_GWS_12V-76_sos_F4_06019F2000_v2.png" alt="Bosch Akku-Winkelschleifer" class="tool-image">
+                <span class="tool-brand">Bosch Professional</span>
+                <h3 class="tool-name">Akku-Winkelschleifer GWS 12V-76</h3>
+                <p class="tool-desc">Der weltweit erste Winkelschleifer in der 12-Volt-Klasse. Kompakt und leistungsstark.</p>
+                <a href="https://www.awin1.com/cread.php?awinmid=11830&awinaffid=1462218&ued=https%3A%2F%2Fwww.globus-baumarkt.de%2Fp%2Fbosch-professional-akku-winkelschleifer-gws-12v-76-solo-0761122251%2F" class="tool-link" target="_blank">
+                    Zum Produkt 
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="tool-card fade-in">
+                <img src="https://images.squarespace-cdn.com/content/v1/663b6072f99df73a91f85bfd/acdb76b7-936b-4cd0-a22c-59749d1d4e02/4010995458096_90043039_566x430-_1_.jpg" alt="Wiha Schraubendreher Set" class="tool-image">
+                <span class="tool-brand">Wiha</span>
+                <h3 class="tool-name">LiftUp Electric Schraubendreher Set</h3>
+                <p class="tool-desc">6-teilig mit verstaubarem Bit Set. Praktisch verstaut und sofort zur Hand.</p>
+                <a href="https://www.awin1.com/cread.php?awinmid=11830&awinaffid=1462218&ued=https%3A%2F%2Fwww.globus-baumarkt.de%2Fp%2Fwiha-schraubendreher-set-liftup-electric-6-teilig-mit-verstaubarem-bit-set-0760252214%2F" class="tool-link" target="_blank">
+                    Zum Produkt 
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="tool-card fade-in">
+                <img src="https://images.squarespace-cdn.com/content/v1/663b6072f99df73a91f85bfd/4b56bed9-cd41-474e-90ed-f027dd8adc7f/F70000-000.jpeg" alt="JOKARI Kabelmesser" class="tool-image">
+                <span class="tool-brand">JOKARI</span>
+                <h3 class="tool-name">Kabelmesser System 4-70</h3>
+                <p class="tool-desc">Schnittverletzungen gehören mit dem neu entwickelten Schutzmechanismus für die Hakenklinge der Vergangenheit an.</p>
+                <a href="https://jokari.de/de/Kabelmesser-System-470.htm" class="tool-link" target="_blank">
+                    Zum Produkt 
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter" id="contact">
+        <h2>NEWSLETTER</h2>
+        <p>Melde dich mit deiner E-Mail-Adresse an, um Neuigkeiten und Updates zu erhalten.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Danke für deine Anmeldung!');">
+            <input type="email" placeholder="Deine E-Mail-Adresse" required>
+            <button type="submit" class="btn btn-primary">Registrieren</button>
+        </form>
+        <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.6;">Ich respektiere deine Privatsphäre.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <span class="footer-logo">ELEKTROBLONDI</span>
+            <div class="footer-links">
+                <a href="#">Impressum</a>
+                <a href="#">Datenschutzerklärung</a>
+                <a href="#">Kontakt</a>
+            </div>
+            <div class="social-links">
+                <a href="https://www.instagram.com/elektroblondi/" target="_blank" aria-label="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="https://www.tiktok.com/@elektroblondi" target="_blank" aria-label="TikTok">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                    </svg>
+                </a>
+                <a href="https://www.youtube.com/@elektroblondi" target="_blank" aria-label="YouTube">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        // Scroll animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
